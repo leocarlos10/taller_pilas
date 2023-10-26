@@ -11,12 +11,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Leocarlos, moises
  */
-public class pila {
+public class pila1 {
     
     nodo tope1;
     nodo tope2;
     
-    public pila(){tope1=null; tope2=null;}
+    public pila1(){tope1=null; tope2=null;}
     
     public nodo getCrearNodo(int valor){
        
@@ -56,7 +56,7 @@ public class pila {
         }
     }
     
-     public void setPush_pila2(int valor){
+    public void setPush_pila2(int valor){
         
         // primero creamos el nodo para luego agregarlo a la pila.
         nodo p = getCrearNodo(valor);
@@ -82,6 +82,8 @@ public class pila {
     
     
     public void verf_sombrero(){
+        
+      
         
         // primero verifico que las pilas no esten vacias
         if(tope1!=null && tope2!=null){
@@ -121,23 +123,31 @@ public class pila {
     
     public void setLlenarJTable(JTable tab){
        
-        nodo p=tope1;
-        nodo q=tope2;
-        int fila=0;
-        
-        DefaultTableModel miModelo=new DefaultTableModel();
+        nodo p = tope1;
+        nodo q = tope2;
+        int fila = 0;
+
+        DefaultTableModel miModelo = new DefaultTableModel();
         miModelo.addColumn("Pila 1");
         miModelo.addColumn("Pila 2");
-       
-       do{
-           miModelo.addRow( new Object [] {"",""});
-           miModelo.setValueAt(p.valor, fila, 0);
-           miModelo.setValueAt(q.valor, fila, 1);
-           p=p.sig;
-           q=q.sig;
-           fila++;
-       }while(p!= tope1 && q!= tope2);
-       
+
+        do {
+            miModelo.addRow(new Object[]{""});
+            miModelo.setValueAt(p.valor, fila, 0);
+            p = p.sig;
+            fila++;
+            
+        } while (p != tope1);
+        
+        do {
+            miModelo.addRow(new Object[]{""});
+            miModelo.setValueAt(q.valor, fila, 1);
+            p = p.sig;
+            q = q.sig;
+            fila++;
+
+        } while ( q != tope2);
+
         tab.setModel(miModelo);
     }
 }

@@ -13,11 +13,11 @@ import javax.swing.JOptionPane;
  */
 public class jfrmPrincipal extends javax.swing.JFrame {
     
-    pila obj;
+    pila1 obj;
     
     public jfrmPrincipal() {
         initComponents();
-        obj = new pila();
+        obj = new pila1();
        
     }
 
@@ -43,6 +43,7 @@ public class jfrmPrincipal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         jmiEliminar.setText("Eliminar Nodo");
         jmiEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -95,7 +96,7 @@ public class jfrmPrincipal extends javax.swing.JFrame {
 
         jMenu2.setText("Opciones");
 
-        jMenuItem1.setText("agregar numero a las pilas");
+        jMenuItem1.setText("agregar numero a las pila 1");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -103,7 +104,7 @@ public class jfrmPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem1);
 
-        jMenuItem3.setText("verificar sombrero");
+        jMenuItem3.setText("agregar numero a la pila 2");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
@@ -111,13 +112,21 @@ public class jfrmPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem3);
 
-        jMenuItem4.setText("null");
+        jMenuItem4.setText("mostrar pilas");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
             }
         });
         jMenu2.add(jMenuItem4);
+
+        jMenuItem2.setText("verifcar sombrero");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem2);
 
         jMenuBar1.add(jMenu2);
 
@@ -159,10 +168,8 @@ public class jfrmPrincipal extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         try{
             int valor_pila1 = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero Pila1"));
-            int valor_pila2 = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero Pila 2"));
             obj.setPush_pila1(valor_pila1);
-            obj.setPush_pila2(valor_pila2);
-            obj.setLlenarJTable(jTable1);
+           
         }catch(Exception e){
             
             JOptionPane.showMessageDialog(null, "Error "+e);
@@ -170,12 +177,24 @@ public class jfrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        obj.verf_sombrero();
+        
+        try{
+            int valor_pila2 = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero Pila 2"));
+            obj.setPush_pila2(valor_pila2);
+            
+        }catch(Exception e){
+            
+            JOptionPane.showMessageDialog(null, "Error "+e);
+        }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-       
+       obj.setLlenarJTable(jTable1);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        obj.verf_sombrero();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,6 +240,7 @@ public class jfrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
