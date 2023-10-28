@@ -36,6 +36,8 @@ public class jfrmPrincipal extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,6 +97,22 @@ public class jfrmPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem2);
 
+        jMenuItem6.setText("Base menor igual mayor Pila 1");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem6);
+
+        jMenuItem7.setText("Base menor igual mayor Pila 2");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem7);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -149,6 +167,37 @@ public class jfrmPrincipal extends javax.swing.JFrame {
         obj.essombrero();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+                                          
+    int resultado = obj.compararBaseTam1();
+    String mensaje;
+
+    mensaje = switch (resultado) {
+            case -1 -> "El elemento de la base de la pila 1 es menor que el número de elementos en la misma.";
+            case 0 -> "El elemento de la base de la pila 1 es igual al número de elementos en la misma.";
+            case 1 -> "El elemento de la base de la pila 1 es mayor que el número de elementos en la misma.";
+            default -> "La pila 1 está vacía.";
+        };
+
+    JOptionPane.showMessageDialog(null, mensaje);
+                                        
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        int resultado = obj.compararBaseTam2();
+    String mensaje;
+
+    mensaje = switch (resultado) {
+            case -1 -> "El elemento de la base de la pila 2 es menor que el número de elementos en la misma.";
+            case 0 -> "El elemento de la base de la pila 2 es igual al número de elementos en la misma.";
+            case 1 -> "El elemento de la base de la pila 2 es mayor que el número de elementos en la misma.";
+            default -> "La pila 1 está vacía.";
+        };
+
+    JOptionPane.showMessageDialog(null, mensaje);
+      
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -196,6 +245,8 @@ public class jfrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
