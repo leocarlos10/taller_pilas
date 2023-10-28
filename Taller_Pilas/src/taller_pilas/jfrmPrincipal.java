@@ -188,9 +188,9 @@ public class jfrmPrincipal extends javax.swing.JFrame {
     String mensaje;
 
     mensaje = switch (resultado) {
-            case -1 -> "El elemento de la base de la pila 2 es menor que el número de elementos en la misma.";
-            case 0 -> "El elemento de la base de la pila 2 es igual al número de elementos en la misma.";
-            case 1 -> "El elemento de la base de la pila 2 es mayor que el número de elementos en la misma.";
+            case -1 -> "El elemento de la base de la pila 2 es menor que los elemntos de la pila.";
+            case 0 -> "El elemento de la base de la pila 2 es igual que los elementos de la pila.";
+            case 1 -> "El elemento de la base de la pila 2 es mayor que los elementos en la pila.";
             default -> "La pila 1 está vacía.";
         };
 
