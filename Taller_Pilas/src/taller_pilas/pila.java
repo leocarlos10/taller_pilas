@@ -95,7 +95,7 @@ public class pila {
         return tope2 == null;
 
     }
-<<<<<<< HEAD
+    
      
     public nodo getPequena(nodo p1, nodo p2){
         
@@ -103,7 +103,21 @@ public class pila {
         int cont_pila2=0;
         nodo pila1=p1;
         nodo pila2=p2;
-=======
+        
+         do{
+            cont_pila1++;
+            pila1= pila1.sig;
+        
+        }while(pila1!=tope1);
+        
+        do{
+            cont_pila2++;
+            pila2=pila2.sig;
+        }while(pila2!=tope2);
+        
+        return cont_pila1<cont_pila2 ? p1:p2; 
+        
+    }
 
     public nodo isPequena(nodo p1, nodo p2) {
 
@@ -111,7 +125,6 @@ public class pila {
         int cont_pila2 = 0;
         nodo pila1 = p1;
         nodo pila2 = p2;
->>>>>>> caaa88721009ae4c1f65cac1bba3634122b39d62
         // tamaño pila1
         do {
             cont_pila1++;
@@ -129,7 +142,6 @@ public class pila {
         return cont_pila1 < cont_pila2 ? p1 : p2;
 
     }
-<<<<<<< HEAD
     
     public nodo getGrande(nodo p1, nodo p2){
         
@@ -138,7 +150,22 @@ public class pila {
         nodo pila1=p1;
         nodo pila2=p2;
         
-=======
+        do{
+            cont_pila1++;
+            pila1= pila1.sig;
+        
+        }while(pila1!=tope1);
+        
+      
+        do{
+            cont_pila2++;
+            pila2=pila2.sig;
+        }while(pila2!=tope2);
+        
+        
+        return cont_pila1>cont_pila2 ? p1:p2; 
+        
+    }
 
     public nodo isGrande(nodo p1, nodo p2) {
 
@@ -146,8 +173,6 @@ public class pila {
         int cont_pila2 = 0;
         nodo pila1 = p1;
         nodo pila2 = p2;
-
->>>>>>> caaa88721009ae4c1f65cac1bba3634122b39d62
         // tamaño pila1
         do {
             cont_pila1++;
@@ -170,13 +195,8 @@ public class pila {
     public int getLongPila() {
 
         int cont = 0; // contador
-<<<<<<< HEAD
         nodo pequeno = getPequena(tope1, tope2); // pila pequeña
         
-=======
-        nodo pequeno = isPequena(tope1, tope2); // pila pequeña
-
->>>>>>> caaa88721009ae4c1f65cac1bba3634122b39d62
         // luego dependiendo de cual tope es la pila pequeña verificamos su tamaño.
         if (pequeno == tope1) {
 
@@ -216,17 +236,11 @@ public class pila {
         }
 
         // obtenemos la pila pequeña y la pila grande ya que si la pila pequeña llega a coincidir con los primero elementos de la grande cercanos el tope va a ser el sombrero de la grande
-<<<<<<< HEAD
+
         nodo pequeno = getPequena(tope1, tope2);
         nodo grande = getGrande(tope1, tope2);
         int cont=0; // este contador me ayuda a verificar si todos los enteros eran iguales o no
-        
-=======
-        nodo pequeno = isPequena(tope1, tope2);
-        nodo grande = isGrande(tope1, tope2);
-        int cont = 0; // este contador me ayuda a verificar si todos los enteros eran iguales o no
 
->>>>>>> caaa88721009ae4c1f65cac1bba3634122b39d62
         // recorremos las dos pilas, si pequeno es diferente de tope 1 o 2 y si los valores de las pilas son iguales contamos y avanzamos en la pila
         do {
             cont++;
@@ -304,8 +318,10 @@ public class pila {
             return 1;
         }
     }
+    
         public int compararBaseTam2() {
-        if (isEmpty_pila1()) {
+        
+            if (isEmpty_pila1()) {
             return 0;
         }
 
