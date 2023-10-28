@@ -63,7 +63,7 @@ public class jfrmPrincipal extends javax.swing.JFrame {
 
         jMenu2.setText("Opciones");
 
-        jMenuItem1.setText("agregar numero a las pila 1");
+        jMenuItem1.setText("agregar numero a la pila 1");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);

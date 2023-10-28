@@ -92,7 +92,7 @@ public class pila {
         
     }
      
-    public nodo isPequena(nodo p1, nodo p2){
+    public nodo getPequena(nodo p1, nodo p2){
         
         int cont_pila1=0;
         int cont_pila2=0;
@@ -116,7 +116,7 @@ public class pila {
         
     }
     
-    public nodo isGrande(nodo p1, nodo p2){
+    public nodo getGrande(nodo p1, nodo p2){
         
         int cont_pila1=0;
         int cont_pila2=0;
@@ -145,7 +145,7 @@ public class pila {
     public int getLongPila(){
        
         int cont = 0; // contador
-        nodo pequeno = isPequena(tope1, tope2); // pila pequeña
+        nodo pequeno = getPequena(tope1, tope2); // pila pequeña
         
         // luego dependiendo de cual tope es la pila pequeña verificamos su tamaño.
         if (pequeno == tope1) {
@@ -186,8 +186,8 @@ public class pila {
         }
         
         // obtenemos la pila pequeña y la pila grande ya que si la pila pequeña llega a coincidir con los primero elementos de la grande cercanos el tope va a ser el sombrero de la grande
-        nodo pequeno = isPequena(tope1, tope2);
-        nodo grande = isGrande(tope1, tope2);
+        nodo pequeno = getPequena(tope1, tope2);
+        nodo grande = getGrande(tope1, tope2);
         int cont=0; // este contador me ayuda a verificar si todos los enteros eran iguales o no
         
         // recorremos las dos pilas, si pequeno es diferente de tope 1 o 2 y si los valores de las pilas son iguales contamos y avanzamos en la pila
