@@ -7,12 +7,15 @@ package controlador;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javax.swing.JOptionPane;
 
 /**
  * 
@@ -21,25 +24,26 @@ import javafx.scene.control.TextField;
  */
 public class PrincipalController implements Initializable {
 
-    @FXML
-    private Button btn_ingresar;
+    
+       @FXML
+    void event_agregarPeli(MouseEvent event) {
+        JOptionPane.showMessageDialog(null, "Evento generado para agregar peli");
+    }
+    
+     @FXML
+    void event_mostrar_antiguos(MouseEvent event) {
+         JOptionPane.showMessageDialog(null, "Evento generado para mostrar estrenos antiguos ");
+    }
 
     @FXML
-    private Label label_nombre;
-
-    @FXML
-    private TextField text_nombre;
-
-    @FXML
-    void event_mostrar_nombre(ActionEvent event) {
-        
-        label_nombre.setText(text_nombre.getText()); 
+    void event_mostrar_estrenos(MouseEvent event) {
+         JOptionPane.showMessageDialog(null, "Evento generado para mostrar estrenos");
     }
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        btn_ingresar.requestFocus();
+        
     }    
     
 }
