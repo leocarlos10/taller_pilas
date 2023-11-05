@@ -4,6 +4,7 @@
  */
 package logica;
 
+import controlador.PrincipalController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,6 +22,8 @@ public class Main extends Application {
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/principal.fxml"));
         Parent root = loader.load();
+        PrincipalController controller = loader.getController();
+        controller.setStage(stage); 
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
