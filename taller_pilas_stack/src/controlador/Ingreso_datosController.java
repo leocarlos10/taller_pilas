@@ -12,12 +12,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import javax.swing.JOptionPane;
 
+import logica.*;
 /**
  *
  *
@@ -26,6 +27,7 @@ import javax.swing.JOptionPane;
 public class Ingreso_datosController implements Initializable {
     
     Stage stage;
+    Pila p = new Pila();
     
     public void setStage(Stage stage2){
         
@@ -62,10 +64,14 @@ public class Ingreso_datosController implements Initializable {
             stage.setScene(scene);
             PrincipalController controller = loader.getController();
             controller.setStage(stage);
+            controller.setLLenarTableView(p.pilaP);
 
         } catch (Exception e) {
 
-            JOptionPane.showMessageDialog(null, "Error " + e);
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Error al agregar pelicula");
+            alerta.setContentText("tipo de error: " + e);
+            alerta.show();
         }
     }
     
@@ -79,7 +85,28 @@ public class Ingreso_datosController implements Initializable {
     @FXML
     void event_agregar(ActionEvent event) {
         
+        // agregamos la pelicula a la pila
+        boolean estado=false;
+       
+        try {
+            estado = p.setPushPelicula(
+                    Integer.parseInt(text_id.getText()),
+                    text_nombre.getText(),
+                    Float.parseFloat(text_duracion.getText()),
+                    Integer.parseInt(text_edad.getText()),
+                    Float.parseFloat(text_valor_boleta.getText()));
+        } catch (Exception e) {
+          Alert alerta = new Alert(Alert.AlertType.ERROR);
+          alerta.setTitle("Error al agregar pelicula");
+          alerta.setContentText("tipo de error: "+e); 
+          alerta.show();
+        }
+        
+        // luego si el estado es true quiere decir que la pelicula fue agregada correctamente.
+        if(estado){
         label_info.setText("Pelicula agregada");
+        }
+        // limpiamos los textos
         text_id.setText("");
         text_nombre.setText("");
         text_edad.setText("");

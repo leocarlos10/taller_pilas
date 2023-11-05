@@ -7,19 +7,21 @@ package controlador;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
+import java.util.Stack;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import logica.*;
 
 /**
  * 
@@ -29,12 +31,32 @@ import javax.swing.JOptionPane;
 public class PrincipalController implements Initializable {
     
     Stage stage;
+    // objeto para poder comunicarnos con los metodos de la pila
+    Pila p = new Pila();
     
     public void setStage(Stage stage1){
         
         stage=stage1;
     }
     
+    // componentes
+     @FXML
+    private TableView<Pelicula> Tabla;
+
+    @FXML
+    private TableColumn col_duracion;
+
+    @FXML
+    private TableColumn col_edad;
+
+    @FXML
+    private TableColumn col_id;
+
+    @FXML
+    private TableColumn col_nombre;
+
+    @FXML
+    private TableColumn col_valor_boleta;
     
     @FXML
     void event_agregarPeli(MouseEvent event) {
@@ -60,7 +82,7 @@ public class PrincipalController implements Initializable {
 
     @FXML
     void event_mostrar_estrenos(MouseEvent event) {
-         JOptionPane.showMessageDialog(null, "Evento generado para mostrar estrenos");
+        p.MostrarAll();
     }
     
     
@@ -69,4 +91,32 @@ public class PrincipalController implements Initializable {
         
     }    
     
+    
+    // metodo encargado de resivir la pila desde el controlador Ingreso_datos, para posteriormente llenar el TableView
+    public void setLLenarTableView(Stack<Pelicula> pilaP) {
+        
+        // primero que todo setemaos la pila que tiene guardada las peliculas a la clase pila
+        p.setPila(pilaP); 
+        
+        // creamos el modelo para el tableView
+        ObservableList<Pelicula> lista = FXCollections.observableArrayList();
+        
+        // cargamos las columnas con los atributos correspondientes.
+        col_id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        col_nombre.setCellValueFactory(new PropertyValueFactory<>("nombrePelicula"));
+        col_duracion.setCellValueFactory(new PropertyValueFactory<>("duracion"));
+        col_edad.setCellValueFactory(new PropertyValueFactory<>("edad"));
+        col_valor_boleta.setCellValueFactory(new PropertyValueFactory<>("valorBoleta"));
+        
+        // recorremos la lista para ir agreando los objetos peliculas al modelo
+        // utilizamos un for que inicie en el tope de la pila y que vaya recorriendo hasta llegar ala base.
+        
+        for(int i= p.pilaP.size()-1; i>=0;i--){
+            
+            lista.add(p.pilaP.get(i));
+        }
+        
+        // al terminar el de agregar las peliculas en la lista modelo se cargan en el tableView
+        Tabla.setItems(lista); 
+    }
 }
