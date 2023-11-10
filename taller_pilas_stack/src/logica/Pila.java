@@ -4,7 +4,13 @@
  */
 package logica;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 import java.util.Stack;
+import javafx.scene.control.Alert;
 
 /**
  *
@@ -21,15 +27,10 @@ public class Pila {
         pilaP.addAll(pila); 
     }
     
-    public boolean setPushPelicula (
-            int id,
-            String nombre,
-            float duracion,
-            int edad,
-            float valor 
-    ){
+    // metodo encargado de agregar ala pila
+    public boolean setPushPelicula (Pelicula pi){
         
-        Pelicula p = new Pelicula(id,nombre,duracion,edad,valor);
+        Pelicula p = pi;
         boolean band = false; // badera para saber si agrego correctamente o no.
         
         // buscamos si la pelicula a ingresar se repite en la pila
@@ -40,15 +41,97 @@ public class Pila {
             pilaP.push(p); // utilizamos el metodo push para ir agregando en la parte del tope de la pila
             band=true;
         }
+        
+        
        return band; 
     }
     
-    public void MostrarAll(){
+    // metodo encargado de agregar los datos de las pelicuals en un fichero de texto
+    public void guardar_P_fichero(Pelicula p) throws Exception {
         
-        for(int i =0;i<pilaP.size();i++){
+        // utilizamos la clase FileWriter para poder escribir en el fichero los datos de las peliculas
+        FileWriter escritura = new FileWriter(
+                "C:/Users/USUARIO/OneDrive/Documentos/taller_pilas/taller_pilas_stack/src/Archivos/ListaPeliculas.txt",
+                true);
+        escritura.write(p.escribir());
+        escritura.close();
+        
+    }
+    
+    public void getInfo_peliculas(){
+        
+       try{
+      
+           File archivo = new File("C:/Users/USUARIO/OneDrive/Documentos/taller_pilas/taller_pilas_stack/src/Archivos/ListaPeliculas.txt");
+           Scanner scanner = new Scanner(archivo);
+           Pelicula peli=null;
+           String atributo="";
+          // atributos para poder instanciar el objeto pelicula
+           int id=0,edad=0;
+           String nombrePeli="";
+           float duracion=0,valorBoleta=0;
+           
+           // utilizo este arrayList para poder capturar la informacion del fichero.
+           List<String> info = new ArrayList<>();
+          
+           // recorro el fichero para ir guardando cada atributo en la lista
+           while (scanner.hasNextLine()) {
+                atributo = scanner.nextLine();
+                // con esto evitamos que nos traiga un valor vacio.
+                if(!atributo.equalsIgnoreCase(""))
+                    info.add(atributo);
+            }
             
-            // mostramos cada pelicula de la pila
+           // ahora recorremos la lista de info para poder crear los objetos y guardarlos en la pila
+           for(int i=0;i<info.size();i+=5){
+              
+               if (!info.isEmpty()) {
+                   id = Integer.parseInt(info.get(i));
+                   nombrePeli = info.get(i + 1);
+                   duracion = Float.parseFloat(info.get(i + 2));
+                   edad = Integer.parseInt(info.get(i + 3));
+                   valorBoleta = Float.parseFloat(info.get(i + 4));
+                   // creamos el objeto
+                   peli = new Pelicula(id, nombrePeli, duracion);
+                   peli.setEdad(edad);
+                   peli.setValorBoleta(valorBoleta);
+                   // por ultimo lo agregamos a la pila
+                   setPushPelicula(peli);
+               }
+           }
+           // cerramos el flujo.
+            scanner.close();
+       
+       }catch(Exception e){
+           
+           aviso_Error("Error al traer los datos del fichero", ""+e);
+       }
+    }
+    
+    public void mostrarAll(){
+        
+        for (int i = pilaP.size() - 1; i >= 0; i--) {
+            
             pilaP.get(i).mostrar();
         }
+    }
+    
+    // metodo general para mostrar avisos de informacion
+    public void aviso_info(String titulo, String info){
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle(titulo);
+        alerta.setContentText(info);
+        alerta.show();
+    }
+    
+    public void aviso_Error(String titulo, String info){
+        Alert alerta = new Alert(Alert.AlertType.ERROR);
+        alerta.setTitle(titulo);
+        alerta.setContentText(info);
+        alerta.show();
+    }
+    
+     public void aviso_captura_informacion(String titulo, String info){
+        
     }
 }

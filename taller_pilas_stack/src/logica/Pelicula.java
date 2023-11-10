@@ -18,12 +18,24 @@ public class Pelicula {
     private int edad;
     private float valorBoleta;
 
-    public Pelicula(int id, String nombrePelicula, float duracion, int edad, float valorBoleta) {
+    public Pelicula(int id, String nombrePelicula, float duracion) {
         this.id = id;
         this.nombrePelicula = nombrePelicula;
         this.duracion = duracion;
-        this.edad = edad;
-        this.valorBoleta = valorBoleta;
+        this.edad = (int ) (Math.random()*(60-5)+5);// la edad se generea automaticamente entre los rangos 5 y 60 años.
+        // hacemos la verificaciones correspondientes para el valor de la Boleta
+        if(edad >= 5 && edad<=10){
+            
+            this.valorBoleta=3000;
+            
+        }else if(edad >= 11 && edad<=17){
+            
+            this.valorBoleta =7000;
+            
+        }else if(edad>=18){
+            
+            this.valorBoleta=9000;
+        }
     }
 
     public int getId() {
@@ -76,5 +88,10 @@ public class Pelicula {
                 + "\nEdad: " + edad
                 + "\nValor de la boleta: " + valorBoleta);
        alerta.show();
+    }
+    
+    public String escribir(){
+        
+       return id+"\n"+nombrePelicula+"\n"+duracion+"\n"+edad+"\n"+valorBoleta+"\n";
     }
 }

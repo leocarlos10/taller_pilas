@@ -12,17 +12,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-
 import logica.*;
 /**
  *
  *
- * @author Leocarlos
+ * @author Leocarlos y moises
  */
 public class Ingreso_datosController implements Initializable {
     
@@ -43,16 +41,10 @@ public class Ingreso_datosController implements Initializable {
     private TextField text_duracion;
 
     @FXML
-    private TextField text_edad;
-
-    @FXML
     private TextField text_id;
 
     @FXML
     private TextField text_nombre;
-    
-    @FXML
-    private TextField text_valor_boleta;
   
     @FXML
     void event_volver(ActionEvent event) {
@@ -64,14 +56,10 @@ public class Ingreso_datosController implements Initializable {
             stage.setScene(scene);
             PrincipalController controller = loader.getController();
             controller.setStage(stage);
-            controller.setLLenarTableView(p.pilaP);
 
         } catch (Exception e) {
 
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setTitle("Error al agregar pelicula");
-            alerta.setContentText("tipo de error: " + e);
-            alerta.show();
+           p.aviso_Error("Error", "Tipo de error "+e);
         }
     }
     
@@ -85,34 +73,51 @@ public class Ingreso_datosController implements Initializable {
     @FXML
     void event_agregar(ActionEvent event) {
         
-        // agregamos la pelicula a la pila
+        
         boolean estado=false;
+        Pelicula peli = null;
        
         try {
-            estado = p.setPushPelicula(
+            // instanciamos la pelicula
+            peli = new Pelicula(
                     Integer.parseInt(text_id.getText()),
                     text_nombre.getText(),
-                    Float.parseFloat(text_duracion.getText()),
-                    Integer.parseInt(text_edad.getText()),
-                    Float.parseFloat(text_valor_boleta.getText()));
-        } catch (Exception e) {
-          Alert alerta = new Alert(Alert.AlertType.ERROR);
-          alerta.setTitle("Error al agregar pelicula");
-          alerta.setContentText("tipo de error: "+e); 
-          alerta.show();
+                    Float.parseFloat(text_duracion.getText()));
+            // guardamos la pelicula en la pila
+            estado = p.setPushPelicula(peli);
+            
+        } catch (NumberFormatException e) {
+          p.aviso_Error("Error al agregar pelicula", " Tipo de error "+e);
+        }catch(Exception e){
+             p.aviso_Error("Error al agregar pelicula", " Tipo de error "+e);
         }
         
         // luego si el estado es true quiere decir que la pelicula fue agregada correctamente.
         if(estado){
-        label_info.setText("Pelicula agregada");
+            
+            label_info.setText("Pelicula agregada");
+            // si la pelicula se agrego correctamente se guarda en el fichero
+            try {
+                p.guardar_P_fichero(peli);
+                // como ya guardamos los datos en el fichero podemos eliminar los datos de la pila
+                p.pilaP.clear();
+            } catch (Exception e) {
+
+                p.aviso_Error("Error", "" + e);
+            }
+            
+             // limpiamos los textos
+            text_id.setText("");
+            text_nombre.setText("");
+            text_duracion.setText("");
+            text_id.requestFocus();
+            
+        }else{
+            
+            text_id.setText("");
+            label_info.setText("Id repetido por favor intente nuevamente");
+           
         }
-        // limpiamos los textos
-        text_id.setText("");
-        text_nombre.setText("");
-        text_edad.setText("");
-        text_duracion.setText("");
-        text_valor_boleta.setText("");
-        text_id.requestFocus();
     }
 
     @Override

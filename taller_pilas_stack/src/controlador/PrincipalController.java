@@ -77,26 +77,27 @@ public class PrincipalController implements Initializable {
     
      @FXML
     void event_mostrar_antiguos(MouseEvent event) {
-         JOptionPane.showMessageDialog(null, "Evento generado para mostrar estrenos antiguos ");
+         
+        JOptionPane.showMessageDialog(null, "Evento generado para mostrar estrenos antiguos ");
     }
 
     @FXML
     void event_mostrar_estrenos(MouseEvent event) {
-        p.MostrarAll();
+        // primero obtenemos los datos desde el fichero
+        p.mostrarAll();
+        
     }
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+         p.getInfo_peliculas();
+         setLLenarTableView(); 
     }    
     
     
-    // metodo encargado de resivir la pila desde el controlador Ingreso_datos, para posteriormente llenar el TableView
-    public void setLLenarTableView(Stack<Pelicula> pilaP) {
-        
-        // primero que todo setemaos la pila que tiene guardada las peliculas a la clase pila
-        p.setPila(pilaP); 
+    // metodo encargado de resivir la pila desde el controlador Ingreso_datos, para posteriormente llenar 
+    public void setLLenarTableView() {
         
         // creamos el modelo para el tableView
         ObservableList<Pelicula> lista = FXCollections.observableArrayList();
