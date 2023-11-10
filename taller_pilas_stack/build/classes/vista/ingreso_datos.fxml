@@ -54,7 +54,7 @@
                      <children>
                         <Button layoutX="8.0" layoutY="14.0" mnemonicParsing="false" onAction="#event_volver" text="Volver" />
                         <Button layoutX="150.0" layoutY="14.0" mnemonicParsing="false" onAction="#event_agregar" text="Agregar" />
-                        <Label fx:id="label_info" layoutX="44.0" layoutY="73.0" prefHeight="32.0" prefWidth="160.0" />
+                        <Label fx:id="label_info" layoutX="44.0" layoutY="73.0" prefHeight="32.0" prefWidth="217.0" />
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />

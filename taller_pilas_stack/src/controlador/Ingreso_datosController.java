@@ -83,7 +83,7 @@ public class Ingreso_datosController implements Initializable {
                     Integer.parseInt(text_id.getText()),
                     text_nombre.getText(),
                     Float.parseFloat(text_duracion.getText()));
-            // guardamos la pelicula en la pila
+            // Luego guardamos la pelicula en la pila
             estado = p.setPushPelicula(peli);
             
         } catch (NumberFormatException e) {
@@ -116,7 +116,7 @@ public class Ingreso_datosController implements Initializable {
             
             text_id.setText("");
             label_info.setText("Id repetido por favor intente nuevamente");
-           
+            text_id.requestFocus();
         }
     }
 

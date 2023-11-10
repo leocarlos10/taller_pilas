@@ -22,9 +22,23 @@ public class Pila {
     
     public Pila() { pilaP = new Stack(); }
     
-    public void setPila(Stack<Pelicula> pila){
+    
+    public int getBuscarIdPeli(Pelicula p){
+       
+        // traigo los datos del fichero
+        getInfo_peliculas();
+        // luego busco en la pila si se encuentra alguna pelicula con id igual
+        for(int i=0;i<pilaP.size() -1;i++){
+            
+            if(pilaP.get(i).getId() == p.getId())
+                return i;
+        }
         
-        pilaP.addAll(pila); 
+        // elimino los datos de la pila
+        pilaP.clear();
+        
+        // si sale del for y no lo encontro retorna -1
+        return -1;
     }
     
     // metodo encargado de agregar ala pila
@@ -34,7 +48,7 @@ public class Pila {
         boolean band = false; // badera para saber si agrego correctamente o no.
         
         // buscamos si la pelicula a ingresar se repite en la pila
-        int pos = pilaP.indexOf(p); // si retorna >0 lo encontro si retorna -1 no lo encontro
+        int pos = getBuscarIdPeli(p); // si retorna >0 lo encontro si retorna -1 no lo encontro
         
         if(pos==-1){
             
@@ -96,7 +110,7 @@ public class Pila {
                    peli.setEdad(edad);
                    peli.setValorBoleta(valorBoleta);
                    // por ultimo lo agregamos a la pila
-                   setPushPelicula(peli);
+                   pilaP.push(peli);
                }
            }
            // cerramos el flujo.
@@ -123,7 +137,7 @@ public class Pila {
         alerta.setContentText(info);
         alerta.show();
     }
-    
+    // metodo general para mostrar avisos de errores
     public void aviso_Error(String titulo, String info){
         Alert alerta = new Alert(Alert.AlertType.ERROR);
         alerta.setTitle(titulo);
