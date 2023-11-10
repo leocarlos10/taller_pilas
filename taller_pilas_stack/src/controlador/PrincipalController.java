@@ -6,8 +6,10 @@ package controlador;
 
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Stack;
+import java.util.concurrent.TimeUnit;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -71,21 +74,66 @@ public class PrincipalController implements Initializable {
             
         }catch(Exception e){
             
-           JOptionPane.showMessageDialog(null, "Error "+e);
+          p.aviso_Error("ERROR", "Tipo de error "+e);
         } 
     }
     
      @FXML
     void event_mostrar_antiguos(MouseEvent event) {
          
-        JOptionPane.showMessageDialog(null, "Evento generado para mostrar estrenos antiguos ");
+        String estado = "";
+        // primero obtenemos los datos desde el fichero
+        do {
+            TextInputDialog dialog2 = p.aviso_captura_informacion("captura de datos", "Desea buscar la info de alguna pelicula ?", " si" + "\nno");
+            Optional<String> result2 = dialog2.showAndWait();
+            if (result2.isPresent()) {
+                // si es asi la obtengo
+                String estado2 = result2.get();
+                estado = estado2;
+            }
+
+            if (estado.equalsIgnoreCase("si")) {
+                TextInputDialog dialog = p.aviso_captura_informacion("Captura de datos", "Ingresa el id de la pelicula", "id:");
+                // guardo la info
+                Optional<String> result = dialog.showAndWait();
+                // verifico si la variable result tiene un valor
+                if (result.isPresent()) {
+                    // si es asi la obtengo
+                    int id = Integer.parseInt(result.get());
+                    p.mostrar_info_estrenos_antiguos(id);
+                }
+            }
+        } while (estado.equalsIgnoreCase("si"));
+       
     }
 
     @FXML
     void event_mostrar_estrenos(MouseEvent event) {
-        // primero obtenemos los datos desde el fichero
-        p.mostrarAll();
         
+        String estado = "";
+        // primero obtenemos los datos desde el fichero
+        do {
+            TextInputDialog dialog2 = p.aviso_captura_informacion("captura de datos", "Desea buscar la info de alguna pelicula ?", " si" + "\nno");
+            Optional<String> result2 = dialog2.showAndWait();
+            if (result2.isPresent()) {
+                // si es asi la obtengo
+                String estado2 = result2.get();
+                estado = estado2;
+            }
+
+            if (estado.equalsIgnoreCase("si")) {
+                TextInputDialog dialog = p.aviso_captura_informacion("Captura de datos", "Ingresa el id de la pelicula", "id:");
+                // guardo la info
+                Optional<String> result = dialog.showAndWait();
+                // verifico si la variable result tiene un valor
+                if (result.isPresent()) {
+                    // si es asi la obtengo
+                    int id = Integer.parseInt(result.get());
+                    p.mostrar_info_estrenos(id);
+                }
+            }
+        } while (estado.equalsIgnoreCase("si"));
+
     }
     
     

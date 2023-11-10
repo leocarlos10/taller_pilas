@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Stack;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextInputDialog;
 
 /**
  *
@@ -122,11 +123,20 @@ public class Pila {
        }
     }
     
-    public void mostrarAll(){
+    public void mostrar_info_estrenos(int id){
         
         for (int i = pilaP.size() - 1; i >= 0; i--) {
+            if(pilaP.get(i).getId() == id)
+                pilaP.get(i).mostrar();
+        }
+    }
+    
+    public void mostrar_info_estrenos_antiguos(int id){
+        
+        for (int i =0; i < pilaP.size(); i++) {
             
-            pilaP.get(i).mostrar();
+            if(pilaP.get(i).getId() == id)
+                pilaP.get(i).mostrar();
         }
     }
     
@@ -144,8 +154,14 @@ public class Pila {
         alerta.setContentText(info);
         alerta.show();
     }
-    
-     public void aviso_captura_informacion(String titulo, String info){
+    // metodo general para captura de datos por pantalla
+     public TextInputDialog aviso_captura_informacion(String titulo, String header, String info){
         
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle(titulo);
+        dialog.setHeaderText(header);
+        dialog.setContentText(info);
+        
+        return dialog;
     }
 }
