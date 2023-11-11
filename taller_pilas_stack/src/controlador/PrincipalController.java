@@ -149,9 +149,16 @@ public class PrincipalController implements Initializable {
         }
     }
     
-     @FXML
+    @FXML
     void event_eliminar_categoria(MouseEvent event) {
         
+        TextInputDialog dialog = p.aviso_captura_informacion("Captura de datos", "Ingrese la categoria a eliminar (niño,adolecente,adulto)", "categoria: ");
+        Optional<String> resultado = dialog.showAndWait();
+        if(resultado.isPresent()){
+            
+            String categoria =resultado.get();
+            p.Total_categoria(categoria); 
+        }
     }
     
     @Override
