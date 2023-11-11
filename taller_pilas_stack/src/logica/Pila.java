@@ -47,18 +47,17 @@ public class Pila {
         
         Pelicula p = pi;
         boolean band = false; // badera para saber si agrego correctamente o no.
-        
+
         // buscamos si la pelicula a ingresar se repite en la pila
         int pos = getBuscarIdPeli(p); // si retorna >0 lo encontro si retorna -1 no lo encontro
-        
-        if(pos==-1){
-            
+
+        if (pos == -1) {
+
             pilaP.push(p); // utilizamos el metodo push para ir agregando en la parte del tope de la pila
-            band=true;
+            band = true;
         }
-        
-        
-       return band; 
+
+        return band; 
     }
     
     // metodo encargado de agregar los datos de las pelicuals en un fichero de texto

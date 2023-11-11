@@ -17,7 +17,8 @@ public class Pelicula {
     private float duracion;
     private int edad;
     private float valorBoleta;
-
+    private String cat;
+    
     public Pelicula(int id, String nombrePelicula, float duracion) {
         this.id = id;
         this.nombrePelicula = nombrePelicula;
@@ -27,14 +28,17 @@ public class Pelicula {
         if(edad >= 5 && edad<=10){
             
             this.valorBoleta=3000;
+            this.cat = "niño";
             
         }else if(edad >= 11 && edad<=17){
             
             this.valorBoleta =7000;
+            this.cat = "adolecente";
             
         }else if(edad>=18){
             
             this.valorBoleta=9000;
+              this.cat = "adulto";
         }
     }
 

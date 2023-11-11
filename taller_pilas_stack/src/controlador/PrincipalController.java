@@ -82,7 +82,6 @@ public class PrincipalController implements Initializable {
     void event_mostrar_antiguos(MouseEvent event) {
          
         String estado = "";
-        // primero obtenemos los datos desde el fichero
         do {
             TextInputDialog dialog2 = p.aviso_captura_informacion("captura de datos", "Desea buscar la info de alguna pelicula ?", " si" + "\nno");
             Optional<String> result2 = dialog2.showAndWait();
@@ -111,7 +110,6 @@ public class PrincipalController implements Initializable {
     void event_mostrar_estrenos(MouseEvent event) {
         
         String estado = "";
-        // primero obtenemos los datos desde el fichero
         do {
             TextInputDialog dialog2 = p.aviso_captura_informacion("captura de datos", "Desea buscar la info de alguna pelicula ?", " si" + "\nno");
             Optional<String> result2 = dialog2.showAndWait();
