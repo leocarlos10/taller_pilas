@@ -157,7 +157,7 @@ public class PrincipalController implements Initializable {
         if(resultado.isPresent()){
             
             String categoria =resultado.get();
-            p.Total_categoria(categoria); 
+            p.eliminarPorCategoria(categoria); 
         }
     }
     

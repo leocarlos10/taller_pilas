@@ -65,7 +65,7 @@ public class Pila {
         
         // utilizamos la clase FileWriter para poder escribir en el fichero los datos de las peliculas
         FileWriter escritura = new FileWriter(
-                "C:/Users/USUARIO/OneDrive/Documentos/taller_pilas/taller_pilas_stack/src/Archivos/ListaPeliculas.txt",
+                "/Users/moises/Documents/Semestre 3/Programacion II/taller_pilas/taller_pilas_stack/src/Archivos/ListaPeliculas.txt",
                 true);
         escritura.write(p.escribir());
         escritura.close();
@@ -76,7 +76,7 @@ public class Pila {
         
        try{
       
-           File archivo = new File("C:/Users/USUARIO/OneDrive/Documentos/taller_pilas/taller_pilas_stack/src/Archivos/ListaPeliculas.txt");
+           File archivo = new File("/Users/moises/Documents/Semestre 3/Programacion II/taller_pilas/taller_pilas_stack/src/Archivos/ListaPeliculas.txt");
            Scanner scanner = new Scanner(archivo);
            Pelicula peli=null;
            String atributo="";
@@ -186,5 +186,20 @@ public class Pila {
         dialog.setContentText(info);
         
         return dialog;
+    }
+     public void eliminarPorCategoria(String categoria) {
+        Stack<Pelicula> nuevaPila = new Stack<>();
+        
+        while (!pilaP.isEmpty()) {
+            
+            Pelicula pelicula = pilaP.pop();
+            
+            if (!pelicula.getCat().equalsIgnoreCase(categoria)) {
+                
+                nuevaPila.push(pelicula);
+            }
+        }
+        // Actualizamos la pila original con la nueva pila sin las películas de la categoría
+        pilaP = nuevaPila;
     }
 }

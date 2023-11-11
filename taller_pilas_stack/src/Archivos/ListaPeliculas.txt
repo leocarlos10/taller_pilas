@@ -17,3 +17,9 @@ after 5
 29
 9000.0
 adulto
+32
+adolecente
+34.0
+8
+3000.0
+niño
