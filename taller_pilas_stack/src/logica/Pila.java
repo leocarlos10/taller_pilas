@@ -12,6 +12,7 @@ import java.util.Scanner;
 import java.util.Stack;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextInputDialog;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -65,7 +66,7 @@ public class Pila {
         
         // utilizamos la clase FileWriter para poder escribir en el fichero los datos de las peliculas
         FileWriter escritura = new FileWriter(
-                "/Users/moises/Documents/Semestre 3/Programacion II/taller_pilas/taller_pilas_stack/src/Archivos/ListaPeliculas.txt",
+                "C:/Users/USUARIO/OneDrive/Documentos/taller_pilas/taller_pilas_stack/src/Archivos/ListaPeliculas.txt",
                 true);
         escritura.write(p.escribir());
         escritura.close();
@@ -76,7 +77,7 @@ public class Pila {
         
        try{
       
-           File archivo = new File("/Users/moises/Documents/Semestre 3/Programacion II/taller_pilas/taller_pilas_stack/src/Archivos/ListaPeliculas.txt");
+           File archivo = new File("C:/Users/USUARIO/OneDrive/Documentos/taller_pilas/taller_pilas_stack/src/Archivos/ListaPeliculas.txt");
            Scanner scanner = new Scanner(archivo);
            Pelicula peli=null;
            String atributo="";
@@ -120,7 +121,7 @@ public class Pila {
        
        }catch(Exception e){
            
-           aviso_Error("Error al traer los datos del fichero", ""+e);
+           aviso_Error("Error al traer los datos del fichero, por favor revise la ruta del fichero", ""+e);
        }
     }
     
@@ -187,19 +188,42 @@ public class Pila {
         
         return dialog;
     }
-     public void eliminarPorCategoria(String categoria) {
-        Stack<Pelicula> nuevaPila = new Stack<>();
+     
+     
+     public void eliminar_fichero () throws Exception{
+         
+         File ruta = new File("C:/Users/USUARIO/OneDrive/Documentos/taller_pilas/taller_pilas_stack/src/Archivos/ListaPeliculas.txt");
         
-        while (!pilaP.isEmpty()) {
+         // este condicional es para verificar si se borro correctamente o no el fichero
+        if(ruta.delete()){
             
-            Pelicula pelicula = pilaP.pop();
-            
-            if (!pelicula.getCat().equalsIgnoreCase(categoria)) {
-                
-                nuevaPila.push(pelicula);
-            }
+            System.out.println("archivo borrado");
+        } else{
+            System.out.println("el archivo no se pudo borrar");
         }
-        // Actualizamos la pila original con la nueva pila sin las películas de la categoría
-        pilaP = nuevaPila;
-    }
+     }
+     public void eliminarPorCategoria(String categoria) {
+        
+         // primero que todo recorremos la pila desde el tope para ir eliminando las peliculas con la categoria seleccionada.
+         for (int i = pilaP.size() - 1; i >= 0; i--) {
+
+             if (pilaP.get(i).cat.equalsIgnoreCase(categoria)) {
+                 pilaP.remove(i);
+             }
+         }
+         
+         
+         try {
+             // eliminamos el fichero antiguo
+             eliminar_fichero();
+             // luego guardamos en un fichero nuevo las peliculas que no fueron borradas
+             for (int i = 0; i < pilaP.size(); i++) {
+
+                 guardar_P_fichero(pilaP.get(i));
+             }
+         } catch (Exception e) {
+
+             aviso_Error("ERROR", "Tipo de error "+e);
+         }
+     }   
 }

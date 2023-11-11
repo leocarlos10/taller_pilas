@@ -103,7 +103,7 @@ public class Ingreso_datosController implements Initializable {
                 p.pilaP.clear();
             } catch (Exception e) {
 
-                p.aviso_Error("Error", "" + e);
+                p.aviso_Error("Error", "Porfavor revise la ruta del fichero" + e);
             }
             
              // limpiamos los textos

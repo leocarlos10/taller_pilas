@@ -157,7 +157,8 @@ public class PrincipalController implements Initializable {
         if(resultado.isPresent()){
             
             String categoria =resultado.get();
-            p.eliminarPorCategoria(categoria); 
+            p.eliminarPorCategoria(categoria);
+            setLLenarTableView();
         }
     }
     
