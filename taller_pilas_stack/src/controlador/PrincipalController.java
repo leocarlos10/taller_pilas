@@ -149,6 +149,11 @@ public class PrincipalController implements Initializable {
         }
     }
     
+     @FXML
+    void event_eliminar_categoria(MouseEvent event) {
+        
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
          p.getInfo_peliculas();

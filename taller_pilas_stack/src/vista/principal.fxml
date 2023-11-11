@@ -38,6 +38,11 @@
                   <Font size="13.0" />
                </font>
             </Label>
+            <Label layoutX="423.0" layoutY="50.0" onMouseClicked="#event_eliminar_categoria" prefHeight="19.0" prefWidth="136.0" text="Eliminar por categoria" textFill="#f2ecec">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <TableView fx:id="Tabla" layoutX="148.0" layoutY="136.0" prefHeight="291.0" prefWidth="439.0">

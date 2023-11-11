@@ -161,9 +161,6 @@ public class Pila {
                 "TOTAL PARA LA CATEGORIA "+categoria, 
                 "El promedio es de: "+promedio+"\nEl total recaudado es de: "+sum_total);
         
-        sum_total=0;
-        promedio=0;
-        contador=0;
     }
     
     // metodo general para mostrar avisos de informacion
