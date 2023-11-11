@@ -20,6 +20,7 @@ public class Pelicula {
     private String cat;
     
     public Pelicula(int id, String nombrePelicula, float duracion) {
+        
         this.id = id;
         this.nombrePelicula = nombrePelicula;
         this.duracion = duracion;

@@ -81,16 +81,8 @@ public class PrincipalController implements Initializable {
      @FXML
     void event_mostrar_antiguos(MouseEvent event) {
          
-        String estado = "";
+        String estado = "si";
         do {
-            TextInputDialog dialog2 = p.aviso_captura_informacion("captura de datos", "Desea buscar la info de alguna pelicula ?", " si" + "\nno");
-            Optional<String> result2 = dialog2.showAndWait();
-            if (result2.isPresent()) {
-                // si es asi la obtengo
-                String estado2 = result2.get();
-                estado = estado2;
-            }
-
             if (estado.equalsIgnoreCase("si")) {
                 TextInputDialog dialog = p.aviso_captura_informacion("Captura de datos", "Ingresa el id de la pelicula", "id:");
                 // guardo la info
@@ -102,15 +94,7 @@ public class PrincipalController implements Initializable {
                     p.mostrar_info_estrenos_antiguos(id);
                 }
             }
-        } while (estado.equalsIgnoreCase("si"));
-       
-    }
-
-    @FXML
-    void event_mostrar_estrenos(MouseEvent event) {
-        
-        String estado = "";
-        do {
+            
             TextInputDialog dialog2 = p.aviso_captura_informacion("captura de datos", "Desea buscar la info de alguna pelicula ?", " si" + "\nno");
             Optional<String> result2 = dialog2.showAndWait();
             if (result2.isPresent()) {
@@ -119,7 +103,18 @@ public class PrincipalController implements Initializable {
                 estado = estado2;
             }
 
-            if (estado.equalsIgnoreCase("si")) {
+            
+        } while (estado.equalsIgnoreCase("si"));
+       
+    }
+
+    @FXML
+    void event_mostrar_estrenos(MouseEvent event) {
+        
+        String estado = "si";
+        do {
+            
+             if (estado.equalsIgnoreCase("si")) {
                 TextInputDialog dialog = p.aviso_captura_informacion("Captura de datos", "Ingresa el id de la pelicula", "id:");
                 // guardo la info
                 Optional<String> result = dialog.showAndWait();
@@ -129,6 +124,14 @@ public class PrincipalController implements Initializable {
                     int id = Integer.parseInt(result.get());
                     p.mostrar_info_estrenos(id);
                 }
+            }
+             
+            TextInputDialog dialog2 = p.aviso_captura_informacion("captura de datos", "Desea seguir buscando la info de alguna pelicula?", " si" + "\nno");
+            Optional<String> result2 = dialog2.showAndWait();
+            if (result2.isPresent()) {
+                // si es asi la obtengo
+                String estado2 = result2.get();
+                estado = estado2;
             }
         } while (estado.equalsIgnoreCase("si"));
 
