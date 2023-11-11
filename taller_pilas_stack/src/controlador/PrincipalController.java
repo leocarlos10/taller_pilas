@@ -137,6 +137,17 @@ public class PrincipalController implements Initializable {
 
     }
     
+     @FXML
+    void event_total_categoria(MouseEvent event) {
+        
+        TextInputDialog dialog = p.aviso_captura_informacion("Captura de datos", "Ingrese la categoria(niño,adolecente,adulto)", "categoria: ");
+        Optional<String> resultado = dialog.showAndWait();
+        if(resultado.isPresent()){
+            
+            String categoria =resultado.get();
+            p.Total_categoria(categoria); 
+        }
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

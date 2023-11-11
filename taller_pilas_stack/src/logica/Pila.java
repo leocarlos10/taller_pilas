@@ -82,7 +82,7 @@ public class Pila {
            String atributo="";
           // atributos para poder instanciar el objeto pelicula
            int id=0,edad=0;
-           String nombrePeli="";
+           String nombrePeli="",cat="";
            float duracion=0,valorBoleta=0;
            
            // utilizo este arrayList para poder capturar la informacion del fichero.
@@ -97,7 +97,7 @@ public class Pila {
             }
             
            // ahora recorremos la lista de info para poder crear los objetos y guardarlos en la pila
-           for(int i=0;i<info.size();i+=5){
+           for(int i=0;i<info.size();i+=6){
               
                if (!info.isEmpty()) {
                    id = Integer.parseInt(info.get(i));
@@ -105,10 +105,12 @@ public class Pila {
                    duracion = Float.parseFloat(info.get(i + 2));
                    edad = Integer.parseInt(info.get(i + 3));
                    valorBoleta = Float.parseFloat(info.get(i + 4));
+                   cat=info.get(i+5);
                    // creamos el objeto
                    peli = new Pelicula(id, nombrePeli, duracion);
                    peli.setEdad(edad);
                    peli.setValorBoleta(valorBoleta);
+                   peli.setCat(cat); 
                    // por ultimo lo agregamos a la pila
                    pilaP.push(peli);
                }
@@ -137,6 +139,31 @@ public class Pila {
             if(pilaP.get(i).getId() == id)
                 pilaP.get(i).mostrar();
         }
+    }
+    
+    public void Total_categoria(String categoria){
+        
+        int sum_total=0;
+        float promedio =0;
+        int contador=0;
+        
+        for(int i=0;i<pilaP.size();i++){
+            
+            if(pilaP.get(i).cat.equalsIgnoreCase(categoria)){
+                contador++;
+                sum_total+=pilaP.get(i).getValorBoleta();
+            }
+        }
+        
+        promedio = (float) sum_total/contador;
+        
+        aviso_info(
+                "TOTAL PARA LA CATEGORIA "+categoria, 
+                "El promedio es de: "+promedio+"\nEl total recaudado es de: "+sum_total);
+        
+        sum_total=0;
+        promedio=0;
+        contador=0;
     }
     
     // metodo general para mostrar avisos de informacion

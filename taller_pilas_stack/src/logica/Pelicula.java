@@ -17,7 +17,7 @@ public class Pelicula {
     private float duracion;
     private int edad;
     private float valorBoleta;
-    private String cat;
+     String cat;
     
     public Pelicula(int id, String nombrePelicula, float duracion) {
         
@@ -82,6 +82,15 @@ public class Pelicula {
     public void setValorBoleta(float valorBoleta) {
         this.valorBoleta = valorBoleta;
     }
+
+    public String getCat() {
+        return cat;
+    }
+
+    public void setCat(String cat) {
+        this.cat = cat;
+    }
+    
     
     public void mostrar(){
       
@@ -97,6 +106,6 @@ public class Pelicula {
     
     public String escribir(){
         
-       return id+"\n"+nombrePelicula+"\n"+duracion+"\n"+edad+"\n"+valorBoleta+"\n";
+       return id+"\n"+nombrePelicula+"\n"+duracion+"\n"+edad+"\n"+valorBoleta+"\n"+cat+"\n";
     }
 }
